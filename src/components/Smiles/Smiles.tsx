@@ -76,15 +76,45 @@ export const Smiles = ({ code, errorCallback }: SmilesProps) => {
 
   if (hasError) {
     return (
-      <div className="smiles-error bg-red-50 border border-red-200 rounded-md p-3 my-2">
+      <div
+        className="smiles-error bg-red-50 border border-red-200 rounded-md p-3 my-2"
+        role="alert"
+        aria-live="polite"
+        aria-label="Chemical structure rendering error"
+      >
         <p className="text-sm text-red-800">{errorMessage}</p>
       </div>
     );
   }
 
   return (
-    <div className="smiles-container block">
+    <div
+      className="smiles-container block"
+      role="img"
+      aria-label={`Chemical structure: ${code}`}
+      aria-describedby={`smiles-description-${code.replace(
+        /[^a-zA-Z0-9]/g,
+        ""
+      )}`}
+    >
       <div ref={containerRef} style={{ maxWidth: "100%", height: "auto" }} />
+      <span
+        id={`smiles-description-${code.replace(/[^a-zA-Z0-9]/g, "")}`}
+        style={{
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          padding: 0,
+          margin: "-1px",
+          overflow: "hidden",
+          clip: "rect(0, 0, 0, 0)",
+          whiteSpace: "nowrap",
+          border: 0,
+        }}
+      >
+        SMILES notation: {code}. This represents a chemical structure rendered
+        as a 2D diagram.
+      </span>
     </div>
   );
 };

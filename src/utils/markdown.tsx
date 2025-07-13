@@ -1,5 +1,9 @@
-import { isValidElement } from 'react';
-import { isSimpleVariable, isSmallVariableLatex, isSelectiveInlineLatex } from './latex';
+import { isValidElement } from "react";
+import {
+  isSimpleVariable,
+  isSmallVariableLatex,
+  isSelectiveInlineLatex,
+} from "./latex";
 
 // Process text to render small variables inline as bold/italic
 export function processTextWithSmallVariables(text: string): JSX.Element[] {
@@ -14,7 +18,12 @@ export function processTextWithSmallVariables(text: string): JSX.Element[] {
       const simpleVarMatch = isSimpleVariable(part);
       if (simpleVarMatch) {
         return (
-          <span key={index} className="font-bold">
+          <span
+            key={index}
+            className="font-bold"
+            role="text"
+            aria-label={`Variable ${simpleVarMatch.content}`}
+          >
             {simpleVarMatch.content}
           </span>
         );
@@ -24,7 +33,12 @@ export function processTextWithSmallVariables(text: string): JSX.Element[] {
       const smallVarMatch = isSmallVariableLatex(part);
       if (smallVarMatch) {
         return (
-          <span key={index} className="font-bold italic">
+          <span
+            key={index}
+            className="font-bold italic"
+            role="math"
+            aria-label={`Mathematical variable ${smallVarMatch.content}`}
+          >
             {smallVarMatch.content}
           </span>
         );
@@ -34,7 +48,7 @@ export function processTextWithSmallVariables(text: string): JSX.Element[] {
     })
     .filter((part) => {
       // Filter out empty text spans
-      const isEmptyTextSpan = part.props.children === '';
+      const isEmptyTextSpan = part.props.children === "";
       return !isEmptyTextSpan;
     });
 }
@@ -43,19 +57,30 @@ export function processTextWithSmallVariables(text: string): JSX.Element[] {
 export function renderHeading(text: string, level: number): JSX.Element {
   const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
   const sizeClasses = {
-    1: 'text-3xl font-bold mb-4 mt-6',
-    2: 'text-2xl font-semibold mb-3 mt-5',
-    3: 'text-xl font-medium mb-2 mt-4',
-    4: 'text-lg font-medium mb-2 mt-3',
-    5: 'text-base font-medium mb-1 mt-2',
-    6: 'text-sm font-medium mb-1 mt-2',
+    1: "text-3xl font-bold mb-4 mt-6",
+    2: "text-2xl font-semibold mb-3 mt-5",
+    3: "text-xl font-medium mb-2 mt-4",
+    4: "text-lg font-medium mb-2 mt-3",
+    5: "text-base font-medium mb-1 mt-2",
+    6: "text-sm font-medium mb-1 mt-2",
   };
+
+  // Create a clean ID for the heading
+  const headingId = text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, "-")
+    .substring(0, 50);
 
   // Process mixed content (text + LaTeX) within the heading
   const processedContent = processMixedContent(text);
 
   return (
-    <HeadingTag className={sizeClasses[level as keyof typeof sizeClasses]}>
+    <HeadingTag
+      id={headingId}
+      className={sizeClasses[level as keyof typeof sizeClasses]}
+      tabIndex={-1}
+    >
       {processedContent}
     </HeadingTag>
   );
@@ -73,18 +98,18 @@ export function processMixedContent(text: string): JSX.Element[] {
 
   while ((match = mathPattern.exec(text)) !== null) {
     // Skip simple variables and small LaTeX variables - these will be handled separately
-    if (match[0].startsWith('$') && !match[0].startsWith('$$')) {
+    if (match[0].startsWith("$") && !match[0].startsWith("$$")) {
       const simpleVarCheck = isSimpleVariable(match[0]);
       if (simpleVarCheck) continue;
     }
 
-    if (match[0].startsWith('\\(') && match[0].endsWith('\\)')) {
+    if (match[0].startsWith("\\(") && match[0].endsWith("\\)")) {
       const smallVarCheck = isSmallVariableLatex(match[0]);
       if (smallVarCheck) continue;
     }
 
     // Additional filtering for $...$
-    if (match[0].startsWith('$') && !match[0].startsWith('$$')) {
+    if (match[0].startsWith("$") && !match[0].startsWith("$$")) {
       const selectiveMatch = isSelectiveInlineLatex(match[0]);
       if (!selectiveMatch) continue;
     }
@@ -137,8 +162,8 @@ export function processMixedContent(text: string): JSX.Element[] {
   return elements.filter((el) => {
     if (isValidElement(el)) {
       const props = el.props as any;
-      if (typeof props.children === 'string') {
-        return props.children.trim() !== '';
+      if (typeof props.children === "string") {
+        return props.children.trim() !== "";
       }
     }
     return true;
@@ -147,7 +172,7 @@ export function processMixedContent(text: string): JSX.Element[] {
 
 // Validate markdown content for security
 export function validateMarkdownContent(content: string): boolean {
-  if (!content || typeof content !== 'string') {
+  if (!content || typeof content !== "string") {
     return false;
   }
 
@@ -169,16 +194,16 @@ export function validateMarkdownContent(content: string): boolean {
     /<meta[^>]*>/gi,
   ];
 
-  return !dangerousPatterns.some(pattern => pattern.test(content));
+  return !dangerousPatterns.some((pattern) => pattern.test(content));
 }
 
 // Sanitize markdown content
 export function sanitizeMarkdownContent(content: string): string {
   // Remove potentially dangerous HTML elements and attributes
   return content
-    .replace(/<script[^>]*>.*?<\/script>/gis, '')
-    .replace(/<iframe[^>]*>.*?<\/iframe>/gis, '')
-    .replace(/javascript:/gi, '')
-    .replace(/data:text\/html/gi, '')
-    .replace(/vbscript:/gi, '');
+    .replace(/<script[^>]*>.*?<\/script>/gis, "")
+    .replace(/<iframe[^>]*>.*?<\/iframe>/gis, "")
+    .replace(/javascript:/gi, "")
+    .replace(/data:text\/html/gi, "")
+    .replace(/vbscript:/gi, "");
 }

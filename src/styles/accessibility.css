@@ -1,0 +1,33 @@
+/* Focus visible styles for better keyboard navigation */
+.prose h1:focus-visible,
+.prose h2:focus-visible,
+.prose h3:focus-visible,
+.prose h4:focus-visible,
+.prose h5:focus-visible,
+.prose h6:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* High contrast error states */
+@media (prefers-contrast: high) {
+  .error-message {
+    border-width: 2px;
+    border-color: #dc2626;
+  }
+
+  .smiles-error {
+    border-width: 2px;
+    border-color: #dc2626;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

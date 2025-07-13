@@ -46,7 +46,11 @@ export const RichText = ({
   // Security validation
   if (!validateMarkdownContent(content)) {
     return (
-      <div className="error-message bg-red-50 border border-red-200 rounded-md p-3">
+      <div
+        className="error-message bg-red-50 border border-red-200 rounded-md p-3"
+        role="alert"
+        aria-live="polite"
+      >
         <p className="text-red-800">Invalid or potentially unsafe content</p>
       </div>
     );
@@ -145,7 +149,11 @@ function renderWithComplexProcessing(
 
   if (inline) {
     return (
-      <span className="prose-inline">
+      <span
+        className="prose-inline"
+        role="presentation"
+        aria-label="Scientific content with mixed formatting"
+      >
         {elements.length > 0
           ? elements
           : renderFallbackContent(content, renderAsMarkdown)}
@@ -154,7 +162,11 @@ function renderWithComplexProcessing(
   }
 
   return (
-    <div className="prose dark:prose-invert max-w-none">
+    <div
+      className="prose dark:prose-invert max-w-none"
+      role="article"
+      aria-label="Scientific document content"
+    >
       {elements.length > 0
         ? elements
         : renderFallbackContent(content, renderAsMarkdown)}
@@ -195,6 +207,9 @@ function renderMatchedContent(match: any, index: number): JSX.Element {
           <div
             key={`error-${index}`}
             className="bg-red-50 border border-red-200 rounded-md p-3"
+            role="alert"
+            aria-live="polite"
+            aria-label="LaTeX rendering error"
           >
             <p className="text-red-800">Invalid LaTeX content</p>
           </div>
@@ -204,11 +219,27 @@ function renderMatchedContent(match: any, index: number): JSX.Element {
       const isBlockMath = match.content.match(/^(\$\$|\\\[)/);
       if (isBlockMath) {
         return (
-          <div key={`latex-${index}`}>{renderLatex(match.content, false)}</div>
+          <div
+            key={`latex-${index}`}
+            role="math"
+            aria-label={`Mathematical expression: ${match.content
+              .replace(/[\$\\\[\]]/g, "")
+              .trim()}`}
+          >
+            {renderLatex(match.content, false)}
+          </div>
         );
       } else {
         return (
-          <span key={`latex-${index}`}>{renderLatex(match.content, true)}</span>
+          <span
+            key={`latex-${index}`}
+            role="math"
+            aria-label={`Inline math: ${match.content
+              .replace(/[\$\\\(\)]/g, "")
+              .trim()}`}
+          >
+            {renderLatex(match.content, true)}
+          </span>
         );
       }
   }
@@ -228,11 +259,25 @@ function renderWithPlaceholders(
   const processedElement = processTextFragmentWithPlaceholders(content, 0);
 
   if (inline) {
-    return <span className="prose-inline">{processedElement}</span>;
+    return (
+      <span
+        className="prose-inline"
+        role="presentation"
+        aria-label="Scientific content with mixed formatting"
+      >
+        {processedElement}
+      </span>
+    );
   }
 
   return (
-    <div className="prose dark:prose-invert max-w-none">{processedElement}</div>
+    <div
+      className="prose dark:prose-invert max-w-none"
+      role="article"
+      aria-label="Scientific document content"
+    >
+      {processedElement}
+    </div>
   );
 }
 

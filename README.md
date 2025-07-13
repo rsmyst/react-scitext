@@ -24,13 +24,13 @@
 - **Security First** - Input validation, sanitization, and XSS prevention
 - **Performance Optimized** - Efficient parsing algorithms with minimal re-renders
 - **TypeScript Ready** - Comprehensive type definitions and intellisense
-- **Accessibility** - ARIA labels and screen reader support
+- **Accessibility** - ARIA labels, screen reader support, and keyboard navigation
 - **Responsive** - Works seamlessly across devices and screen sizes
-<img width="500"  alt="S_2476" src="https://github.com/user-attachments/assets/0d8aa2d2-9d5d-45fe-9ee4-d12220cc98b9" />
-<img width="500"  alt="S_2477" src="https://github.com/user-attachments/assets/13b2264f-e9b5-4f8a-98b2-319ed6f4410e" />
-<img width="500" alt="S_2478" src="https://github.com/user-attachments/assets/8a2f96e2-944b-4134-b924-d6e3d866de63" />
-<img width="500"  alt="S_2479" src="https://github.com/user-attachments/assets/61cda6ab-721c-4d16-95b9-ded00776b717" />
-<img width="500"  alt="S_2480" src="https://github.com/user-attachments/assets/54741b0a-5eba-44d5-817c-821717460828" />
+  <img width="500"  alt="S_2476" src="https://github.com/user-attachments/assets/0d8aa2d2-9d5d-45fe-9ee4-d12220cc98b9" />
+  <img width="500"  alt="S_2477" src="https://github.com/user-attachments/assets/13b2264f-e9b5-4f8a-98b2-319ed6f4410e" />
+  <img width="500" alt="S_2478" src="https://github.com/user-attachments/assets/8a2f96e2-944b-4134-b924-d6e3d866de63" />
+  <img width="500"  alt="S_2479" src="https://github.com/user-attachments/assets/61cda6ab-721c-4d16-95b9-ded00776b717" />
+  <img width="500"  alt="S_2480" src="https://github.com/user-attachments/assets/54741b0a-5eba-44d5-817c-821717460828" />
 
 ## Installation
 
@@ -560,6 +560,47 @@ Built-in security measures for safe rendering:
 - **XSS Prevention**: Protection against cross-site scripting attacks
 - **Size Limits**: Prevents DoS attacks through content size limits
 - **Safe Rendering**: Uses safe rendering methods for all content types
+
+## Accessibility Features
+
+Comprehensive accessibility support for inclusive user experiences:
+
+- **ARIA Labels**: Proper labeling for all content types (math, chemistry, headings)
+- **Screen Reader Support**: Descriptive text for complex visual content
+- **Keyboard Navigation**: Focusable headings with proper tab ordering
+- **Error Announcements**: Live regions for error messages
+- **Semantic HTML**: Proper heading hierarchy and document structure
+- **High Contrast Support**: Respects user's contrast preferences
+- **Reduced Motion**: Respects user's motion preferences
+- **Focus Management**: Visible focus indicators for keyboard users
+
+### Accessibility Features in Detail
+
+#### Mathematical Content
+
+- Math expressions use `role="math"` with descriptive `aria-label`
+- Block math is distinguished from inline math for screen readers
+- Complex equations include readable descriptions
+
+#### Chemical Structures
+
+- SMILES diagrams use `role="img"` with chemical structure descriptions
+- Hidden text provides SMILES notation for screen readers
+- Error states are announced to assistive technologies
+
+#### Document Structure
+
+- Headings include proper `aria-level` attributes
+- Automatic ID generation for heading navigation
+- Semantic HTML5 structure with `role="article"`
+
+#### Error Handling
+
+- Error messages use `role="alert"` with `aria-live="polite"`
+- Validation errors are announced without interrupting workflow
+- Visual and programmatic error indicators
+
+To ensure full accessibility compliance, the library includes accessibility specific styling.
 
 ## Performance
 
