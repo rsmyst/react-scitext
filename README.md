@@ -5,7 +5,6 @@
 [![npm version](https://badge.fury.io/js/react-scitext.svg)](https://badge.fury.io/js/react-scitext)
 [![Build Status](https://github.com/rsmyst/react-scitext/workflows/CI/badge.svg)](https://github.com/rsmyst/react-scitext/actions)
 [![Coverage Status](https://coveralls.io/repos/github/rsmyst/react-scitext/badge.svg?branch=main)](https://coveralls.io/github/rsmyst/react-scitext?branch=main)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Bundle Size](https://img.shields.io/bundlephobia/minzip/react-scitext)](https://bundlephobia.com/package/react-scitext)
 
@@ -36,10 +35,14 @@
 npm install react-scitext
 ```
 
-**Peer Dependencies:**
+**Important:** This package requires React 16.8.0 or higher. Make sure your `react` and `react-dom` versions match to avoid compatibility issues:
 
 ```bash
-npm install react react-dom
+# Install matching versions of React and React-DOM
+npm install react@^18.0.0 react-dom@^18.0.0
+
+# Or if you prefer React 17
+npm install react@^17.0.0 react-dom@^17.0.0
 ```
 
 **Required CSS for LaTeX rendering:**
