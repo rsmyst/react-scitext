@@ -4,9 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/react-scitext.svg)](https://badge.fury.io/js/react-scitext)
 [![Build Status](https://github.com/rsmyst/react-scitext/workflows/CI/badge.svg)](https://github.com/rsmyst/react-scitext/actions)
-[![Coverage Status](https://coveralls.io/repos/github/rsmyst/react-scitext/badge.svg?branch=main)](https://coveralls.io/github/rsmyst/react-scitext?branch=main)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
-[![Bundle Size](https://img.shields.io/bundlephobia/minzip/react-scitext)](https://bundlephobia.com/package/react-scitext)
 
 **A powerful React component library for rendering scientific text with mixed content including Markdown, LaTeX math, and SMILES chemical structures.**
 
@@ -28,6 +26,11 @@
 - **TypeScript Ready** - Comprehensive type definitions and intellisense
 - **Accessibility** - ARIA labels and screen reader support
 - **Responsive** - Works seamlessly across devices and screen sizes
+<img width="500"  alt="S_2476" src="https://github.com/user-attachments/assets/0d8aa2d2-9d5d-45fe-9ee4-d12220cc98b9" />
+<img width="500"  alt="S_2477" src="https://github.com/user-attachments/assets/13b2264f-e9b5-4f8a-98b2-319ed6f4410e" />
+<img width="500" alt="S_2478" src="https://github.com/user-attachments/assets/8a2f96e2-944b-4134-b924-d6e3d866de63" />
+<img width="500"  alt="S_2479" src="https://github.com/user-attachments/assets/61cda6ab-721c-4d16-95b9-ded00776b717" />
+<img width="500"  alt="S_2480" src="https://github.com/user-attachments/assets/54741b0a-5eba-44d5-817c-821717460828" />
 
 ## Installation
 
