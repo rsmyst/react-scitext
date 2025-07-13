@@ -10,7 +10,7 @@
 
 **A powerful React component library for rendering scientific text with mixed content including Markdown, LaTeX math, and SMILES chemical structures.**
 
-[Documentation](https://rsmyst.github.io/react-scitext) • [Storybook](https://react-scitext.netlify.app) • [Examples](#examples) • [Getting Started](#installation)
+[Storybook](https://react-scitext.netlify.app) • [Examples](#examples) • [Getting Started](#installation)
 
 </div>
 
@@ -622,7 +622,7 @@ npm run storybook          # Start Storybook dev server
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions!
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
